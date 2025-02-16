@@ -1,0 +1,76 @@
+/* styles.css */
+/* Base Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Grid Layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    flex: 1;
+}
+
+/* Flexbox Layout */
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px;
+    background: #f0f0f0;
+}
+
+/* Card Styling */
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* New CSS Property: clip-path */
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    float: left;
+    shape-outside: circle(50%);
+    margin-right: 20px;
+    transition: transform 0.3s;
+    /* EC: Mouse interaction enhancement */
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .bio {
+        flex-direction: column;
+    }
+
+    .avatar {
+        float: none;
+        margin: 0 auto 20px;
+    }
+}
+
+/* Gallery Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.gallery-item {
+    height: 150px;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}

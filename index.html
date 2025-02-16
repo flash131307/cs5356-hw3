@@ -1,85 +1,100 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Pages Demo</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
+    <!-- EC: Meta tags for rich preview -->
+    <meta property="og:title" content="My Portfolio">
+    <meta property="og:description" content="A creative portfolio website">
+    <meta property="og:image" content="./images/avatar.jpg">
+    <meta name="twitter:card" content="summary_large_image">
 
-        /* Flexbox container for responsive layout */
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
 
-        .box {
-            flex: 1 1 300px;
-            max-width: 500px;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Glassmorphic effect using backdrop-filter */
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        /* Responsive design for smaller screens */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-        }
-    </style>
+    <!-- EC: GoatCounter Analytics -->
+    <script data-goatcounter="https://yourcode.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
+<header class="header">
+    <h1>Welcome to My Space</h1>
+</header>
 
-<h1>My GitHub Pages Website</h1>
+<nav class="nav">
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+</nav>
 
-<!-- Responsive layout using Flexbox -->
-<div class="container">
-    <div class="box">Box 1</div>
-    <div class="box">Box 2</div>
-    <div class="box glass-effect">Box 3</div>
-</div>
+<main class="grid-container">
+    <section id="about" class="card">
+        <h2>About Me</h2>
+        <div class="bio">
+            <img src="./images/avatar.jpg" alt="My Avatar" class="avatar">
+            <p class="intro">Hi! I'm a web developer passionate about creating beautiful and functional websites.
+                When I'm not coding, you can find me hiking or reading tech blogs.</p>
+        </div>
+    </section>
 
-<!-- New HTML element: <details> for collapsible content -->
-<details>
-    <summary>Click to expand for more information</summary>
-    <p>This is hidden content inside the `<details>` tag. It is useful for FAQs or expandable sections.</p>
-</details>
+    <!-- New HTML element: details -->
+    <section class="card">
+        <details>
+            <summary>Click to see my skills</summary>
+            <ul>
+                <li>HTML/CSS</li>
+                <li>JavaScript</li>
+                <li>React</li>
+            </ul>
+        </details>
+    </section>
 
-    <!-- API Data Fetching -->
-    <div id="api-data" class="box glass-effect">Loading data...</div>
+    <section id="gallery" class="card">
+        <h2>My Works</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">Project 1</div>
+            <div class="gallery-item">Project 2</div>
+            <div class="gallery-item">Project 3</div>
+        </div>
+    </section>
 
-    <script>
-        // Fetching data from JSONPlaceholder API
-        fetch('https://jsonplaceholder.typicode.com/posts/1')
-            .then(response => response.json())
-            .then(data => {
-                // Updating content dynamically
-                document.getElementById('api-data').innerHTML = `<h2>${data.title}</h2><p>${data.body}</p>`;
-            })
-            .catch(error => console.error('API request failed:', error));
-    </script>
+    <!-- API Data Section -->
+    <section class="card" id="api-data">
+        <h2>Random Joke</h2>
+        <div class="joke-container"></div>
+    </section>
+</main>
 
+<footer class="footer">
+    <p>© 2025 My Portfolio</p>
+</footer>
+
+<script>
+    // API Fetch
+    fetch('https://official-joke-api.appspot.com/random_joke')
+        .then(response => response.json())
+        .then(data => {
+            const jokeHTML = `
+                    <p><strong>${data.setup}</strong></p>
+                    <p>${data.punchline}</p>
+                `;
+            document.querySelector('.joke-container').innerHTML = jokeHTML;
+        })
+        .catch(error => {
+            console.error('Error fetching joke:', error);
+            document.querySelector('.joke-container').innerHTML =
+                "<p>Failed to load joke. Please try again later.</p>";
+        });
+
+    // EC: Mouse move interaction
+    document.addEventListener('mousemove', (e) => {
+        const avatar = document.querySelector('.avatar');
+        const xPos = (e.clientX / window.innerWidth - 0.5) * 20;
+        const yPos = (e.clientY / window.innerHeight - 0.5) * 20;
+        avatar.style.transform = `translate(${xPos}px, ${yPos}px)`;
+    });
+</script>
 </body>
 </html>
