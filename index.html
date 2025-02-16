@@ -3,10 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My GitHub Page website</title>
+    <title>GitHub Pages Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        /* Flexbox container for responsive layout */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .box {
+            flex: 1 1 300px;
+            max-width: 500px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Glassmorphic effect using backdrop-filter */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-<h1>hi，GitHub Page！</h1>
-<p>My GitHub Page</p>
+
+<h1>My GitHub Pages Website</h1>
+
+<!-- Responsive layout using Flexbox -->
+<div class="container">
+    <div class="box">Box 1</div>
+    <div class="box">Box 2</div>
+    <div class="box glass-effect">Box 3</div>
+</div>
+
+<!-- New HTML element: <details> for collapsible content -->
+<details>
+    <summary>Click to expand for more information</summary>
+    <p>This is hidden content inside the `<details>` tag. It is useful for FAQs or expandable sections.</p>
+</details>
+
+    <!-- API Data Fetching -->
+    <div id="api-data" class="box glass-effect">Loading data...</div>
+
+    <script>
+        // Fetching data from JSONPlaceholder API
+        fetch('https://jsonplaceholder.typicode.com/posts/1')
+            .then(response => response.json())
+            .then(data => {
+                // Updating content dynamically
+                document.getElementById('api-data').innerHTML = `<h2>${data.title}</h2><p>${data.body}</p>`;
+            })
+            .catch(error => console.error('API request failed:', error));
+    </script>
+
 </body>
 </html>
