@@ -11,7 +11,7 @@ body {
 /* Grid Layout */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 20px;
     flex: 1;
@@ -24,6 +24,7 @@ body {
     gap: 20px;
     padding: 15px;
     background: #f0f0f0;
+    flex-wrap: wrap;
 }
 
 /* Card Styling */
@@ -58,6 +59,19 @@ body {
         margin: 0 auto 20px;
     }
 }
+
+@media (max-width: 400px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* 超小屏幕时改为单列布局 */
+    }
+
+    .nav {
+        flex-direction: column; /* 导航栏改为垂直排列 */
+        align-items: center; /* 居中对齐 */
+    }
+}
+
+
 
 /* Gallery Grid */
 .gallery-grid {
